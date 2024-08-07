@@ -15,10 +15,9 @@ router.get('/', async(req, res) => {
         },
         {
           model: Tag,
-          through: { attributes: [] },
           
         }
-      ]
+      ],
     });
     res.json(products);
   } catch (error) {
@@ -32,10 +31,8 @@ router.get('/', async(req, res) => {
 router.get('/:id', async(req, res) => {
   // find a single product by its `id`
   try {
-    const products = await Product.findOne({
-      where: {
-        id: req.params.id
-      },
+    const products = await Product.findByPk(req.params.id, {
+    
        // be sure to include its associated Category and Tag data
       include: [
         {
@@ -44,10 +41,9 @@ router.get('/:id', async(req, res) => {
         },
         {
           model: Tag,
-          through: { attributes: [] },
          
         }
-      ]
+      ],
     });
 
     if (!products) {
@@ -98,14 +94,14 @@ router.put('/:id', (req, res) => {
   // update product data
   Product.update(req.body, {
     where: {
-      product_id: req.params.id,
+      id: req.params.id,
     },
   })
     .then((product) => {
       if (req.body.tagIds && req.body.tagIds.length) {
         
         ProductTag.findAll({
-          where: { product_id: req.params.id }
+          where: { id: req.params.id }
         }).then((productTags) => {
           // create filtered list of new tag_ids
           const productTagIds = productTags.map(({ tag_id }) => tag_id);
@@ -113,7 +109,7 @@ router.put('/:id', (req, res) => {
           .filter((tag_id) => !productTagIds.includes(tag_id))
           .map((tag_id) => {
             return {
-              product_id: req.params.id,
+              // product_id: req.params.id,
               tag_id,
             };
           });
