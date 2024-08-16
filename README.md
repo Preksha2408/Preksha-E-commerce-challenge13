@@ -136,18 +136,17 @@ Remove a product from the database using its ID.
 
 ## Screenshots 
 
-* ![First-page](./assets/images/Cfontspage.png)
+* ![First-page](./public/images/getRoute.png)
 
-* ![Second-page](./assets/images/Tables.png)
+* ![Second-page](./public/images/postRoute.png)
+
+* ![Third-page](./public/images/deleteRoute.png)
 
 
 
 ## Demo 
 
-* ![Click here](./assets/images/Employee-trackerchallenge12.gif)
-
-* [Click here for youtube link](https://www.youtube.com/watch?v=2icKZybzLDc)
-
+* ![Click here](./public/images/Challenge13-E-commerce.gif)
 
 ## Questions 
 
