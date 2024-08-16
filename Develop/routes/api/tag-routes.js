@@ -10,9 +10,9 @@ router.get('/', async(req, res) => {
       include: [
         {
           model: Product,
-          attributes: ['product_name', 'price', 'stock']
+          
         },
-      ]
+      ],
     });
     res.json(tags);
   } catch (error) {
@@ -71,6 +71,7 @@ router.delete("/:id", async (req, res) => {
       ? res.status(404).json({ message: "No tag found with this id!" })
       : res.status(200).json(deleted);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: "Tag deletion failed" });
   }
 });
